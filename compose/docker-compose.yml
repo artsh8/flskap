@@ -2,7 +2,7 @@ version: "2"
 
 services:
   cflskapp:
-    image: flskap
+    image: artsh8/flskap
     ports:
       - 5000:5000
     depends_on:
@@ -16,7 +16,7 @@ services:
         ipv4_address: 10.5.0.2
   
   cflsk-generator0:
-    image: flsk-generator
+    image: artsh8/flsk-generator
     environment:
       - KAFKA_BOOTSTRAP_SERVERS=10.5.0.6:9092
       - KAFKA_PARTITION=0
@@ -30,7 +30,7 @@ services:
         ipv4_address: 10.5.0.3
 
   cflsk-generator1:
-    image: flsk-generator
+    image: artsh8/flsk-generator
     environment:
       - KAFKA_BOOTSTRAP_SERVERS=10.5.0.6:9092
       - KAFKA_PARTITION=1
@@ -44,7 +44,7 @@ services:
         ipv4_address: 10.5.0.4
 
   carchive-server:
-    image: flsk-archive-server
+    image: artsh8/flsk-archive-server
     environment:
       - SCY_HOST=10.5.0.7
       - GRPC_PORT=10.5.0.8:50051
@@ -57,7 +57,7 @@ services:
         ipv4_address: 10.5.0.8
     
   carchive-client:
-    image: flsk-archive-client
+    image: artsh8/flsk-archive-client
     environment:
       - CLICK_HOST=10.5.0.5
       - KAFKA_BOOTSTRAP_SERVERS=10.5.0.6:9092
