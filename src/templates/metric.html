@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Данные</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+<form action="/">
+<button>Вернуться назад</button>
+</form>
+<h1>{{ data_header }}</h1>
+{% if metric %}
+<table class="table">
+    <tr class="table__header">
+        {% for header in headings %}
+        <th class="table__cell">{{ header }}</th>
+        {% endfor %}
+    </tr>
+    {% for row in metric %}
+    <tr class="table__row">
+        {% for cell in row %}
+        <td class="table__cell">{{ cell }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+<h1>Графики</h1>
+<img src="data:image/png;base64, {{ img_pie }}">
+<img src="data:image/png;base64, {{ img_line }}">
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package archive;
+
+service Archiver {
+  rpc Archive(ArchiveRequest) returns (ArchiveReply);
+  rpc Ack(AckRequest) returns (AckReply);
+}
+
+message ArchiveRequest {
+  string request_string = 1;
+}
+
+enum TransactionType {
+  CREDIT = 0;
+  DEBIT = 1;
+  TRANSFER = 2;
+}
+
+message TransactionInfo {
+  string transaction_id = 1;
+  string date = 2;
+  uint32 customer_id = 3;
+  double amount = 4;
+  TransactionType transaction_type = 5;
+  string description = 6;
+}
+
+message ArchiveReply {
+  repeated TransactionInfo transaction_info = 1;
+}
+
+message AckRequest {
+  string request_string = 1;
+  uint32 year = 2;
+  repeated string transaction_id = 3;
+}
+
+message AckReply {
+  string reply = 1;
+}
